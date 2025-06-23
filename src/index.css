@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* Base body styles to match the new design */
+body {
+  background-color: #0d0d0d; /* A very dark, near-black background */
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 30px 30px;
+  color: #e5e7eb; /* A light gray for text */
+}
+
+/* Custom class for the beautiful glowing gradient borders */
+.gradient-border {
+  position: relative;
+  background: #111827; /* The card's background color */
+  border-radius: 0.75rem; /* 12px */
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.75rem;
+  padding: 2px; /* The thickness of the border */
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* Purple to Blue gradient */
+  
+  /* The Fix: Added standard 'mask' and combined properties */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+    
+  -webkit-mask-composite: xor;
+  mask-composite: exclude; /* 'exclude' is the standard equivalent of 'xor' */
+  
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+
+/* Animation for content fading in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Delay for staggered animations */
+.fade-in-delay-1 { animation-delay: 0.1s; }
+.fade-in-delay-2 { animation-delay: 0.2s; }
+.fade-in-delay-3 { animation-delay: 0.3s; }
+.fade-in-delay-4 { animation-delay: 0.4s; }
+
+/* Custom styles for the wallet button to override defaults */
+.wallet-adapter-button-trigger {
+    background: #1e293b !important; /* bg-slate-800 */
+    border: 1px solid #334155;
+    transition: all 0.2s ease-in-out;
+}
+
+.wallet-adapter-button-trigger:hover {
+    background: #334155 !important; /* bg-slate-700 */
+    border-color: #475569;
+}
+.gradient-border-container {
+  position: relative;
+  padding: 2px; /* The border thickness */
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gradient-border-container:hover {
+  opacity: 1;
+}
